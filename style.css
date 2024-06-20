@@ -1,0 +1,167 @@
+* {
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 7px;
+    font-style: normal;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+}
+.nav {
+    width: 100%;
+    height: 30px;
+}
+.nav--top{
+    display: flex;
+    justify-content: space-between;
+    min-height: 40px;
+    padding: 0 10px ;
+    background: linear-gradient(#ee4d2d,#ea694f);
+    font-size: 1rem;
+}
+
+.nav--top .left{
+    min-width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.nav--top .right{
+    min-width: 35%;
+    display: flex;
+    align-items: center;
+}
+
+
+.nav__element--top{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.8rem;
+}
+.nav__element--top:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.nav__element--top::after{
+    content: "";
+    border: 0.5px solid #e9e6e6;
+    opacity: 0.7;
+    height: 100%;
+    margin-left: 8px;
+}
+
+.fa-solid, .fa-brands{
+    font-size: 2.5rem;
+    margin: auto 2px;
+    display: inline-block;
+}
+
+.fa-brands {
+    color: #fff;
+}
+
+.fa-facebook:hover{
+    position: relative;
+}
+
+.fa-facebook--text{
+    background:#322f2f;
+    position: absolute;
+    min-width: fit-content;
+    padding: 2px;
+    text-wrap: nowrap;
+    opacity: 0;
+    top: 20px;
+    left:20px;
+    font-size: 1.5rem;
+    color: rgb(232, 224, 224);
+}
+
+.fa-square-instagram:hover{
+    position: relative;
+}
+.fa-square-instagram--text{
+    background:#322f2f;
+    position: absolute;
+    min-width: fit-content;
+    padding: 2px;
+    text-wrap: nowrap;
+    opacity: 0;
+    top: 20px;
+    left:20px;
+    font-size: 1.5rem;
+    color: rgb(232, 224, 224);
+}
+
+.fa-facebook:hover .fa-facebook--text{
+    opacity: 1;
+}
+
+.fa-square-instagram:hover .fa-square-instagram--text{
+    opacity: 1;
+}
+
+.fa-solid, .fa-brands:hover{
+    cursor: pointer;
+}
+
+
+.flex-element {
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto 5px;
+    padding: 0 5px;
+}
+.flex-element a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.flex-element a:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.flex-element a::after{
+    content: "";
+    border: 0.5px solid #e9e6e6;
+    opacity: 0.7;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.login{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.7rem;
+    
+}
+.login:hover {
+    opacity: 0.6;
+}
+
+.login::after{
+    content: "";
+    border: 0.5px solid #e9e6e6;
+    opacity: 0.7;
+    height: 100%;
+    margin-left: 5px;
+}
+
+.logout{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.7rem;
+    margin-left: 5px;
+}
+.logout:hover {
+    opacity: 0.6;
+}
+
