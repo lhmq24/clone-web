@@ -10,16 +10,19 @@
 }
 .nav {
     width: 100%;
-    height: 30px;
+    height: 50px;
+    display: block;
+    position: relative;
 }
 .nav--top{
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     min-height: 40px;
     padding: 0 10px ;
     background: linear-gradient(#ee4d2d,#ea694f);
-    font-size: 1rem;
+    font-size: 2.5rem;
     box-sizing: border-box;
 }
 
@@ -151,49 +154,75 @@
 }
 
 .slider {
-    margin-top: 10px;
+    display: block;
     width: 100%;
     height: 400px;
     overflow: hidden;
     position: relative;
     background-color: #ea694f;
-}
-
-.slider--image{
+  }
+  
+  .slides {
     display: flex;
-    margin: 10px 0;
-    width: 100%;
+    width: 200%; /* Double the width for two images */
     height: 100%;
-    overflow: hidden;
-    object-fit: fill;
-}
-
-.slider--button {
+    animation: slide-animation 15s infinite;
+  }
+  
+  .slider--image {
+    flex: 1 100%; /* Ensure each image takes 100% width of the slider */
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .slider--button {
     position: absolute;
-    height: 50px; 
+    height: 50px;
     width: 50px;
     top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
     background-color: #322f2f;
     opacity: 0.5;
-    object-fit: cover;
-}
-
-.slider--button:hover {
-    position: absolute;
-    height: 50px; 
-    width: 50px;
-    top: 50%;
-    cursor: pointer;
-    background-color: #b3abab;
+  }
+  
+  .slider--button:hover {
     opacity: 1;
-    object-fit: cover;
-}
-
-#previous--image{
+  }
+  
+  #previous--image {
     left: 10px;
-}
-
-#next--image{
+  }
+  
+  #next--image {
     right: 10px;
-}
+  }
+  
+  .navigation {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Animation for sliding */
+  @keyframes slide-animation {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(0); }  /* Show first slide longer */
+    50% { transform: translateX(-55%); } /* Transition to second slide */
+    83% { transform: translateX(-55%); } /* Show second slide longer */
+    100% { transform: translateX(0); } /* Loop back to first slide */
+  }
+  
