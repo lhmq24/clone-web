@@ -10,18 +10,18 @@
 }
 .nav {
     width: 100%;
-    height: 50px;
+    height: 140px;
+    background: linear-gradient(rgb(246, 65, 46),rgb(254, 98, 50));
     display: block;
     position: relative;
 }
 .nav--top{
-    height: 100%;
+    height: 30%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     min-height: 40px;
     padding: 0 10px ;
-    background: linear-gradient(#ee4d2d,#ea694f);
     font-size: 2.5rem;
     box-sizing: border-box;
 }
@@ -153,6 +153,127 @@
     right: -6px;
 }
 
+.nav--bottom{
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 40px;
+    padding: 10px 10px ;
+    font-size: 2.5rem;
+    box-sizing: border-box;
+}
+
+.elements{
+    height: 100%;
+}
+
+.elements--logo{
+    width: 15%;
+}
+
+
+
+.elements__middle{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+
+}
+
+.elements__middle--top{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.elements--searchbox{
+    width: 85% ;
+    height: 100%;
+}
+
+.elements--searchbutton{
+    width: 15% ;
+    height: 100%;
+    background: linear-gradient(rgb(246, 65, 46),rgb(254, 98, 50));
+    border: #e9e6e6 solid 3px;
+    box-sizing: border-box;
+    color: #e9e6e6;
+}
+
+.elements--searchbutton:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.elements--categories{
+    width: 90% ;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 0 0;
+}
+
+.elements--categories > * {
+    width: fit-content;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+}
+
+.elements--shoppingcart{
+    width: 15%;
+    height: 100%;
+    color: rgb(221, 218, 218);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0 0 0 ;
+}
+
+.fa-cart-shopping{
+    width: 70%;
+    height: 100%;
+    font-size: 40px;
+    text-align: center;
+    position: relative;
+
+}
+
+.fa-cart-shopping::after {
+    /* content: attr(data-count); Use a custom attribute for the count */
+    content: "2";
+    position: absolute;
+    top: -10px; /* Position the badge */
+    right: 30px;
+    background: rgb(239, 239, 10);
+    color: orange;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Make it circular */
+    font-weight: 1000;
+    animation: vibrate infinite linear 3s;
+}
+
+#logo {
+    width: 100%;
+    height: 100%;
+    fill: #e9e6e6;
+    padding: 0 0 10px 10px;
+}
+
+
 .slider {
     display: block;
     width: 100%;
@@ -164,13 +285,13 @@
   
   .slides {
     display: flex;
-    width: 200%; /* Double the width for two images */
+    width: 200%; 
     height: 100%;
     animation: slide-animation 15s infinite;
   }
   
   .slider--image {
-    flex: 1 100%; /* Ensure each image takes 100% width of the slider */
+    flex: 1 100%; 
     height: 100%;
     object-fit: cover;
     display: block;
@@ -225,4 +346,12 @@
     83% { transform: translateX(-55%); } /* Show second slide longer */
     100% { transform: translateX(0); } /* Loop back to first slide */
   }
+
+  @keyframes vibrate {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-2px, 0px); }
+    50% { transform: translate(2px, 0px); }
+    75% { transform: translate(-2px, 0px); }
+    100% { transform: translate(2px, 0px); }
+}
   
