@@ -194,6 +194,7 @@
 .elements--searchbox{
     width: 85% ;
     height: 100%;
+    font-size: 12px;
 }
 
 .elements--searchbutton{
@@ -287,7 +288,9 @@
     display: flex;
     width: 200%; 
     height: 100%;
-    animation: slide-animation 15s infinite;
+    /* animation: slide-animation 15s infinite; */
+    animation: none;
+    transition: transform linear 3s;
   }
   
   .slider--image {
