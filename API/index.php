@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+    echo <<<IDEN
+    <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,41 +11,30 @@
         <script src="https://kit.fontawesome.com/453e6bda0e.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Playwrite+IT+Moderna:wght@100..400&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Rubik+Gemstones&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../src/demo_card.css">
         <title>Document</title>
     </head>
     <body>
         <div class="nav">
             <div class="elements elements--shoppingcart">
-                <a href="../src/cart.html"><i class="fa-solid fa-cart-shopping" id="cartcount" data-count="0"></i></a>
+                <i class="fa-solid fa-cart-shopping"></i>
             </div>
             <div class="elements elements__middle">
                 <div class="elements__middle--top">
-                    <a href="../src/index.html">
-                        <h1 id="shop-name">QLaptop</h1>
-                    </a>
+                    <h1 id="shop-name">QLaptop</h1>
                 </div>
-                <div class="elements__middle--mid">
-                    <input placeholder="Hãy tìm mặt hàng bạn muốn mua nào..." class="elements--searchbox" id="searchbox">
-                    <button class="elements--searchbutton" id="elements--searchbutton">
+                <div class="elements__middle--bot">
+                    <input placeholder="Hãy tìm mặt hàng bạn muốn mua nào..." class="elements--searchbox">
+                    <button class="elements--searchbutton">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
-                <!-- <div class="elements__middle--bot">
-                          <a class="categories" href="#">Category 1</a>
-                          <a class="categories" href="#">Category 2</a>
-                          <a class="categories" href="#">Category 3</a>
-                          <a class="categories" href="#">Category 4</a>
-                </div> -->
             </div>
             <div class="nav--right"> 
                 <div class="flex-element">
-                    <a id="login" href="login.html">Đăng nhập</a>
-                    <a id="user" href="#"></a>
+                    <a class=" login" href="">Đăng nhập</a>
                 </div>
                 <div class="flex-element">
-                    <a id="signup" href="sign_up.html">Đăng ký</a>
-                    <a id="logout" href="#"></a>
+                    <a class=" logout" href="">Đăng ký</a>
                 </div>
             </div>
         </div>
@@ -62,14 +52,15 @@
         </div>
         <div class="best-seller">
             <div class="best-seller__title">
-                <p id="best-seller__title">Best Seller</p>
+                <h3 id="best-seller__title">Best Seller</h3>
             </div>
             <div class="best-seller__products" id="products_container">
                 
             </div>
         </div>
-        <script src="../src/main.js"></script>
         <script src="../src/move-slide.js"></script>
         <script src="../src/get_best_sellers.js"></script>
     </body>
     </html>
+IDEN;
+?>

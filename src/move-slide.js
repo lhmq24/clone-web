@@ -8,7 +8,7 @@ let currentDot = 0; // Set the initial dot index
 let AutoSlidingSlides; // Variable to store the interval ID
 
 function moveToSlide(index) {
-    let offset = (index === 0) ? 0 : -55;
+    let offset = (index === 0) ? 0 : -50;
     slides.forEach(slide => slide.style.transform = `translateX(${offset}%)`); // Move the slide
 
     // Update the dot styles

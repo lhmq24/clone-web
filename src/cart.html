@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/453e6bda0e.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Gemstones&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/main_style.css">
+    <link rel="stylesheet" href="../src/cart.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <!-- Checkout Modal (initially hidden) -->
+        <div id="checkout-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <form class="form" autocomplete="on">
+                    <h2 id="heading">CHECK OUT</h2>
+                    <span class="input-span">
+                        <label for="name" class="label">Your name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your name" required />
+                    </span>
+                    <span class="input-span">
+                        <label for="phone_number" class="label">Your phone number</label>
+                        <input type="text" name="phone_number" id="phone_number" placeholder="Enter your phone number" required />
+                    </span>
+                    <span class="input-span">
+                        <label for="address" class="label">Your address</label>
+                        <input type="text" name="address" id="address" placeholder="Enter your address" required />
+                    </span>
+                    <input class="button" id="submit" type="submit" value="Buy now" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav">
+        <div class="elements elements--shoppingcart">
+            <a href="../src/cart.html"><i class="fa-solid fa-cart-shopping" id="cartcount" data-count="0"></i></a>
+        </div>
+        <div class="elements elements__middle">
+            <div class="elements__middle--top">
+                <a href="../src/index.html">
+                    <h1 id="shop-name">QLaptop</h1>
+                </a>
+            </div>
+            <div class="elements__middle--mid">
+                <input placeholder="Hãy tìm mặt hàng bạn muốn mua nào..." class="elements--searchbox" id="searchbox">
+                <button class="elements--searchbutton" id="elements--searchbutton">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            <div class="elements__middle--bot">
+                      <a class="categories" href="#">Category 1</a>
+                      <a class="categories" href="#">Category 2</a>
+                      <a class="categories" href="#">Category 3</a>
+                      <a class="categories" href="#">Category 4</a>
+            </div>
+        </div>
+        <div class="nav--right"> 
+            <div class="flex-element">
+                <a id="login" href="login.html">Đăng nhập</a>
+                <a id="user" href="#"></a>
+            </div>
+            <div class="flex-element">
+                <a id="signup" href="sign_up.html">Đăng ký</a>
+                <a id="logout" href="#"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="master-container">
+        <div class="card cart">
+            <label class="title">Your cart</label>
+            <div class="products" id="products">
+
+            </div>
+        </div>
+    
+        <!-- <div class="card coupons">
+            <label class="title">Apply coupons</label>
+            <form class="form">
+                <input type="text" placeholder="Apply your coupons here" class="input_field">
+                <button>Apply</button>
+            </form>
+        </div> -->
+    
+        <div class="card checkout">
+            <label class="title">Checkout</label>
+            <div class="details">
+                <span>Your cart subtotal:</span>
+                <span id="subtotal">0.00đ</span>
+                <!-- <span>Discount through applied coupons:</span>
+                <span id="discount">3.99$</span> -->
+                <span>Shipping fees:</span>
+                <span id="shipping-fees">0.00đ</span>
+            </div>
+            <div class="checkout--footer">
+                <label class="price" id="total_price"><sup>đ</sup>0.00</label>
+                <button class="checkout-btn" id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+  <script src="../src/cart.js"></script>
+</body>
+</html>
