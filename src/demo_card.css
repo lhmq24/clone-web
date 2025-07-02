@@ -1,4 +1,4 @@
-/* From Uiverse.io by iconicchandu */ 
+
 .card {
     --white: hsl(0, 0%, 100%);
     --black: hsl(240, 15%, 9%);
@@ -32,6 +32,11 @@
 
     font-size: 24px;
   }
+
+.card:hover {
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    transition: box-shadow 0.3s ease;
+}
   
   .card .card__border {
     overflow: hidden;
@@ -85,7 +90,7 @@
   }
 
   .card .card_title__container{
-    height: 30%;
+    height: 25%;
     width: 100%;
   }
   
@@ -93,11 +98,12 @@
     font-size: 2rem;
     color: var(--white);
     text-decoration: none;
+    overflow: hidden;
   }
   
   .card .card_title__container .card_paragraph {
     margin-top: 0.25rem;
-    width: 65%;
+    width: 100%;
   
     font-size: 1.5rem;
     color: var(--paragraph);

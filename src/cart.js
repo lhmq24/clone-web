@@ -6,7 +6,7 @@ fetch('../API/login_check.php')
             window.location.href = 'login.html';  // Redirect to login page if not logged in
         } else {
             // Logged in successfully
-            updateCartCount()
+            updateCartCount();
 
             // Display username and Logout when logged in
             const login = document.getElementById('login');
@@ -36,9 +36,9 @@ fetch('../API/login_check.php')
 
                             // Reset cart when log out
                             localStorage.removeItem("cart");
-                            cartcount.setAttribute("data-count", 0);
+                            document.getElementById("cartcount").setAttribute("data-count", 0);
                             // Redirect to login page after logout
-                            mwindow.location.href = '../src/login.html';  
+                            window.location.href = '../src/login.html';  
                         } else {
                             console.error('Server error during logout:', data.message);
                         }
@@ -51,6 +51,7 @@ fetch('../API/login_check.php')
         console.error('Error during login check request:', error);
     });
 
+// Initialize the cart count and show cart items when the page loads
 document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
     showCartItems();  
@@ -65,6 +66,7 @@ checkoutButton.addEventListener('click', () => {
     modal.style.display = 'block'; // Show the modal
     document.body.style.overflow = 'hidden'; // Prevent scrolling behind the modal
 });
+
 
 // Close the modal when the close button (×) is clicked
 closeModal.addEventListener('click', () => {
@@ -86,17 +88,47 @@ window.addEventListener('click', (event) => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         if (cart.length === 0) {
             alert("Your cart is empty! Please add items to your cart before proceeding to checkout.");
-        } else {
+            return;
+        }  else {
             // Proceed with the checkout process
             e.preventDefault();
 
             // Get the input values
-            const name = document.getElementById('name').value;
-            const phone_number = document.getElementById('phone_number').value;
-            const address = document.getElementById('address').value;
+            const name = document.getElementById('name').value.trim();
+            const phone_number = document.getElementById('phone_number').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const username = getCookie("username"); // Get the username from cookies
+            
+            // Validate input fields
+            const name_regex = /^[A-Z][a-z]+(?:\s[A-Z][a-z]+)*$/; // Using non-capturing characters to make middle/ last name optional
+            const phone_regex = /^[0-9]{10,11}$/; 
+            const address_regex = /^[a-zA-Z0-9\s,.'-]{10,70}$/; 
+
+            if (!name || !phone_number || !address) {
+                alert("Please fill out all fields.");
+                return;
+            }            
+
+            if (!name_regex.test(name)) {
+                alert("Your name is not valid!");
+                return;
+            }
+
+            if (!phone_regex.test(phone_number)) {
+                alert("Your phone number is not valid!");
+                return;
+            }
+            if (!address_regex.test(address)) {
+                alert("Your address is not valid!");
+                return;
+            }
+            if( username === null) {
+                alert("Please login before checkout!");
+                return;
+            }
 
             // Call the payCart function
-            const result = await payCart(name, phone_number, address);
+            const result = await payCart(username, name, phone_number, address);
 
             // If successful, redirect; otherwise, show an error
             if (result.success) {
@@ -113,7 +145,7 @@ window.addEventListener('click', (event) => {
 
 //----------------------------Function Section ----------------------------
 
-async function payCart(name, phone_number, address) {
+async function payCart(username, name, phone_number, address) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     cart.forEach(product => {
@@ -128,7 +160,8 @@ async function payCart(name, phone_number, address) {
         "name": name,
         "phone_number": phone_number,
         "address": address,
-        "total_price": total_price
+        "total_price": total_price,
+        "username": username
     };
 
     return fetch('../API/pay_cart.php', {
@@ -162,7 +195,12 @@ function movetoMain() {
 function updateCartCount(){
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartcount = document.getElementById('cartcount');
-    cartcount.setAttribute("data-count", cart.length); 
+    let count = 0 ;
+    // Iterate through cart to calculate total quantity
+    cart.forEach(product => {
+        count += parseInt(product.quantity,10); // Ensure quantity is an integer
+    });
+    cartcount.setAttribute("data-count", count); 
 }
 
 function showCartItems() {
@@ -242,9 +280,9 @@ function showCartItems() {
         });
         // Append the product div to the container
         productsContainer.appendChild(productDiv);
-
-        updateCheckout();
     });
+
+    updateCheckout(); // Update the checkout section with the current cart items
 }
 
 function increaseProductQuantity(product) {
@@ -308,23 +346,39 @@ function removeCartItem(product) {
 
 function updateCheckout() {
     const subtotal = document.getElementById('subtotal');
-    // const discount = document.getElementById('discount');
     const shipping_fees = document.getElementById('shipping-fees');
     const total_price = document.getElementById('total_price');
 
     let sub_total = 0;
-    // let discount_price = 0;
-    let shippingfees = 30000; // Default shipping fees
-    let total = 0;
+    const shippingfees = 30000; // Default shipping fees
 
+    // Fetch the cart from localStorage, defaulting to an empty array if not found
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    // Iterate through cart to calculate
-    cart.forEach(item => {
-        sub_total += parseInt(item.price,10)*parseInt(item.quantity,10);
-    });
-    subtotal.textContent = `${sub_total.toLocaleString()} đ`;
-    shipping_fees.textContent = `${shippingfees.toLocaleString()} đ`;
 
-    total = sub_total + shippingfees;
-    total_price.textContent = `${(sub_total + shippingfees).toLocaleString()} đ`;
+    // Calculate subtotal
+    cart.forEach(item => {
+        const price = parseInt(item.price, 10);
+        const quantity = parseInt(item.quantity, 10);
+
+        if (!isNaN(price) && !isNaN(quantity)) {
+            sub_total += price * quantity;
+        }
+    });
+
+    // Update subtotal display
+    subtotal.textContent = `${sub_total.toLocaleString()} đ`;
+
+    // Update shipping fees display
+    shipping_fees.textContent = sub_total > 0 ? `${shippingfees.toLocaleString()} đ` : `0 đ`;
+
+    // Calculate and display total price
+    const total = sub_total + (sub_total > 0 ? shippingfees : 0);
+    total_price.textContent = `${total.toLocaleString()} đ`;
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
 }

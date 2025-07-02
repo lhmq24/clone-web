@@ -112,6 +112,10 @@
     align-items: center;
 }
 
+.shop-name {
+    text-decoration: none;
+}
+
 #shop-name{
     font-family: "Rubik Gemstones", system-ui;
     font-size: 36px;

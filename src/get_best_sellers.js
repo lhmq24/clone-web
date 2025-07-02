@@ -67,8 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Add title
             const cardTitle = document.createElement("a");
             cardTitle.classList.add("card_title");
-            cardTitle.setAttribute("href", "../API/cart.html");
-            cardTitle.textContent = product.name; // Set product name as the card title
+            let truncatedName = product.name.length > 45 
+            ? product.name.slice(0, 42) + "..." 
+            : product.name; // Truncate name if too long
+            cardTitle.textContent = truncatedName; // Set product name as the card title
             cardTitleContainer.appendChild(cardTitle);
 
             // Add paragraph (description)
